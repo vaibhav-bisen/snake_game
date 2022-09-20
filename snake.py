@@ -15,21 +15,23 @@ class Snake:
         self.head = self.segments[0]
 
     def create_snake(self):
-        for position in STARTING_POSITIONS:
-            self.add_segments(position)
 
-    def add_segments(self, position):
+        for pos in STARTING_POSITIONS:
+            self.add_segments(pos)
+
+    def add_segments(self, posn):
         new_segment = Turtle(shape="square")
         new_segment.color("white")
         new_segment.penup()
-        new_segment.goto(position)
+        new_segment.goto(posn)
         self.segments.append(new_segment)
 
     def extend(self):
         # Add new segment
-        self.add_segments(self.segments[-1].position())
+        self.add_segments(self.segments[-1].position())  # This .position() come from the position func in the turtle
 
     def move(self):
+        # For the shifting of segments (in second position third segment)
         for seg_num in range(len(self.segments) - 1, 0, -1):
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
